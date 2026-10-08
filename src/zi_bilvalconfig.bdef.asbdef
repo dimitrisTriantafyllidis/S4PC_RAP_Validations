@@ -1,0 +1,129 @@
+managed implementation in class zbp_i_bilvalconfig unique;
+strict ( 2 );
+
+define behavior for ZI_BilValConfig alias Config
+persistent table zbilval_config
+lock master
+authorization master ( global )
+etag master LocalLastChangedAt
+{
+  field ( readonly ) ConfigId, LocalLastChangedBy, LocalLastChangedAt, LastChangedAt;
+  update;
+
+  association _Rule { create; }
+  association _Plugin { create; }
+
+  mapping for zbilval_config
+  {
+    ConfigId = config_id;
+    Description = description;
+    LocalLastChangedBy = local_last_changed_by;
+    LocalLastChangedAt = local_last_changed_at;
+    LastChangedAt = last_changed_at;
+  }
+}
+
+define behavior for ZI_BilValRule alias Rule
+persistent table zbilval_rule
+lock dependent by _Config
+authorization dependent by _Config
+etag dependent by _Config
+{
+  field ( readonly : update ) RuleId, ConfigId;
+  field ( readonly ) LocalLastChangedBy, LocalLastChangedAt, LastChangedAt;
+  field ( mandatory : create ) RuleId, Outcome, Severity, MessageText;
+
+  update;
+  delete;
+
+  association _Config;
+  association _Condition { create; }
+
+  determination normalizeRule on modify { create; update; }
+  validation validateRule on save { create; update; }
+
+  mapping for zbilval_rule
+  {
+    RuleId = rule_id;
+    ConfigId = config_id;
+    Description = description;
+    Checkpoint = checkpoint;
+    Outcome = outcome;
+    Severity = severity;
+    BillingType = billing_type;
+    SalesOrganization = sales_organization;
+    CompanyCode = company_code;
+    ItemCategory = item_category;
+    SoldToParty = sold_to_party;
+    MessageText = message_text;
+    ActiveFlag = active_flag;
+    Sequence = sequence;
+    ApprovalReason = approval_reason;
+    LocalLastChangedBy = local_last_changed_by;
+    LocalLastChangedAt = local_last_changed_at;
+    LastChangedAt = last_changed_at;
+  }
+}
+
+define behavior for ZI_BilValCondition alias Condition
+persistent table zbilval_cond
+lock dependent by _Rule
+authorization dependent by _Rule
+etag dependent by _Rule
+{
+  field ( readonly : update ) RuleId, Position;
+  field ( mandatory : create ) Position, Scope, FieldName, Operator;
+
+  update;
+  delete;
+
+  association _Rule;
+
+  determination normalizeCondition on modify { create; update; }
+  validation validateCondition on save { create; update; }
+
+  mapping for zbilval_cond
+  {
+    RuleId = rule_id;
+    Position = position;
+    Scope = scope;
+    FieldName = field_name;
+    Operator = operator;
+    ValueLow = value_low;
+    ValueHigh = value_high;
+    CompareField = compare_field;
+  }
+}
+
+define behavior for ZI_BilValPlugin alias Plugin
+persistent table zbilval_plugin
+lock dependent by _Config
+authorization dependent by _Config
+etag dependent by _Config
+{
+  field ( readonly : update ) PluginId, ConfigId;
+  field ( readonly ) LocalLastChangedBy, LocalLastChangedAt, LastChangedAt;
+  field ( mandatory : create ) PluginId;
+
+  update;
+  delete;
+
+  association _Config;
+
+  determination normalizePlugin on modify { create; update; }
+  validation validatePlugin on save { create; update; }
+
+  mapping for zbilval_plugin
+  {
+    PluginId = plugin_id;
+    ConfigId = config_id;
+    Description = description;
+    Checkpoint = checkpoint;
+    ActiveFlag = active_flag;
+    Sequence = sequence;
+    ApprovalReason = approval_reason;
+    LocalLastChangedBy = local_last_changed_by;
+    LocalLastChangedAt = local_last_changed_at;
+    LastChangedAt = last_changed_at;
+  }
+}

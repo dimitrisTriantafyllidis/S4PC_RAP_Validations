@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_SRVB" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>   <SRVB>
+    <NAME>ZUI_BILVAL_O4</NAME>
+    <TYPE>ODATA</TYPE>
+    <VERSION>4</VERSION>
+    <BINDING_TYPE>ODATA_V4_UI</BINDING_TYPE>
+    <SRVD_NAME>ZUI_BILVAL</SRVD_NAME>
+   </SRVB>  </asx:values>
+ </asx:abap>
+</abapGit>

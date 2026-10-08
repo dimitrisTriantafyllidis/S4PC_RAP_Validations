@@ -1,0 +1,28 @@
+projection;
+strict ( 2 );
+
+define behavior for ZC_BilValConfig alias Config
+{
+  use update;
+  use association _Rule { create; }
+  use association _Plugin { create; }
+}
+
+define behavior for ZC_BilValRule alias Rule
+{
+  use update;
+  use delete;
+  use association _Condition { create; }
+}
+
+define behavior for ZC_BilValCondition alias Condition
+{
+  use update;
+  use delete;
+}
+
+define behavior for ZC_BilValPlugin alias Plugin
+{
+  use update;
+  use delete;
+}

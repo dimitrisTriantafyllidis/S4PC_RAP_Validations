@@ -1,0 +1,10 @@
+@EndUserText.label: 'Billing validation'
+define service ZUI_BILVAL {
+  expose ZC_BilValConfig as BillingValidationConfig;
+  expose ZC_BilValRule as BillingValidationRule;
+  expose ZC_BilValCondition as BillingValidationCondition;
+  expose ZC_BilValPlugin as BillingValidationPlugin;
+  expose ZI_BilValFieldVH as ValidationField;
+  expose ZI_BilValCodeVH as ValidationCode;
+  expose ZI_BilValPluginVH as ValidationPlugin;
+}

@@ -1,0 +1,67 @@
+@Metadata.layer: #CORE
+@UI.headerInfo: {
+  typeName: 'Validation Rule',
+  typeNamePlural: 'Validation Rules',
+  title: { type: #STANDARD, value: 'RuleId' },
+  description: { value: 'Description' }
+}
+annotate view ZC_BilValRule with
+{
+  @UI.facet: [
+    { id: 'General', purpose: #STANDARD, type: #IDENTIFICATION_REFERENCE, label: 'Rule', position: 10 },
+    { id: 'Conditions', purpose: #STANDARD, type: #LINEITEM_REFERENCE, label: 'Conditions', position: 20, targetElement: '_Condition' }
+  ]
+  @UI.lineItem: [{ position: 10, importance: #HIGH }]
+  @UI.identification: [{ position: 10 }]
+  @UI.selectionField: [{ position: 10 }]
+  RuleId;
+  @UI.hidden: true
+  ConfigId;
+  @UI.lineItem: [{ position: 20 }]
+  @UI.identification: [{ position: 20 }]
+  @UI.selectionField: [{ position: 20 }]
+  Description;
+  @UI.lineItem: [{ position: 30 }]
+  @UI.identification: [{ position: 30 }]
+  @UI.selectionField: [{ position: 30 }]
+  @Consumption.valueHelpDefinition: [{ entity: { name: 'ZI_BilValCodeVH', element: 'Code' },
+    additionalBinding: [{ element: 'CodeGroup', localConstant: 'CHECKPOINT', usage: #FILTER }] }]
+  Checkpoint;
+  @UI.lineItem: [{ position: 40 }]
+  @UI.identification: [{ position: 40 }]
+  @Consumption.valueHelpDefinition: [{ entity: { name: 'ZI_BilValCodeVH', element: 'Code' },
+    additionalBinding: [{ element: 'CodeGroup', localConstant: 'OUTCOME', usage: #FILTER }] }]
+  Outcome;
+  @UI.lineItem: [{ position: 50 }]
+  @UI.identification: [{ position: 50 }]
+  @Consumption.valueHelpDefinition: [{ entity: { name: 'ZI_BilValCodeVH', element: 'Code' },
+    additionalBinding: [{ element: 'CodeGroup', localConstant: 'SEVERITY', usage: #FILTER }] }]
+  Severity;
+  @UI.identification: [{ position: 60 }]
+  BillingType;
+  @UI.identification: [{ position: 70 }]
+  SalesOrganization;
+  @UI.identification: [{ position: 80 }]
+  CompanyCode;
+  @UI.identification: [{ position: 90 }]
+  ItemCategory;
+  @UI.identification: [{ position: 100 }]
+  SoldToParty;
+  @UI.identification: [{ position: 110 }]
+  @UI.multiLineText: true
+  MessageText;
+  @UI.lineItem: [{ position: 60 }]
+  @UI.identification: [{ position: 120 }]
+  ActiveFlag;
+  @UI.lineItem: [{ position: 70 }]
+  @UI.identification: [{ position: 130 }]
+  Sequence;
+  @UI.identification: [{ position: 140 }]
+  ApprovalReason;
+  @UI.hidden: true
+  LocalLastChangedBy;
+  @UI.hidden: true
+  LocalLastChangedAt;
+  @UI.hidden: true
+  LastChangedAt;
+}

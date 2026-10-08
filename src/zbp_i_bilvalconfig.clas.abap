@@ -1,0 +1,5 @@
+CLASS zbp_i_bilvalconfig DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zi_bilvalconfig.
+ENDCLASS.
+
+CLASS zbp_i_bilvalconfig IMPLEMENTATION.
+ENDCLASS.
