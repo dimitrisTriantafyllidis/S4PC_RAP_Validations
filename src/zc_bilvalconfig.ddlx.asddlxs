@@ -1,0 +1,52 @@
+@Metadata.layer: #CORE
+@UI.headerInfo: {
+  typeName: 'Billing Validation',
+  typeNamePlural: 'Billing Validations',
+  title: { type: #STANDARD, value: 'ConfigId' },
+  description: { type: #STANDARD, value: 'Description' }
+}
+annotate view ZC_BilValConfig with
+{
+  @UI.facet: [
+    {
+      id: 'Config',
+      purpose: #STANDARD,
+      type: #IDENTIFICATION_REFERENCE,
+      label: 'Configuration',
+      position: 10
+    },
+    {
+      id: 'Rules',
+      purpose: #STANDARD,
+      type: #LINEITEM_REFERENCE,
+      label: 'Rules',
+      position: 20,
+      targetElement: '_Rule'
+    },
+    {
+      id: 'Plugins',
+      purpose: #STANDARD,
+      type: #LINEITEM_REFERENCE,
+      label: 'Plug-ins',
+      position: 30,
+      targetElement: '_Plugin'
+    }
+  ]
+  @UI.lineItem: [{ position: 10 }]
+  @UI.identification: [{ position: 10 }]
+  @UI.selectionField: [{ position: 10 }]
+  ConfigId;
+
+  @UI.lineItem: [{ position: 20 }]
+  @UI.identification: [{ position: 20 }]
+  Description;
+
+  @UI.hidden: true
+  LocalLastChangedBy;
+
+  @UI.hidden: true
+  LocalLastChangedAt;
+
+  @UI.hidden: true
+  LastChangedAt;
+}

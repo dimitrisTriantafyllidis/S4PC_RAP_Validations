@@ -1,0 +1,51 @@
+@Metadata.layer: #CORE
+annotate view ZC_BilValCondition with
+{
+  @UI.lineItem: [{ position: 10 }]
+  @UI.identification: [{ position: 10 }]
+  RuleId;
+
+  @UI.lineItem: [{ position: 20 }]
+  @UI.identification: [{ position: 20 }]
+  Position;
+
+  @UI.lineItem: [{ position: 30 }]
+  @UI.identification: [{ position: 30 }]
+  @Consumption.valueHelpDefinition: [{
+    entity: { name: 'ZI_BilValCodeVH', element: 'Code' },
+    additionalBinding: [{ element: 'CodeGroup', localConstant: 'SCOPE', usage: #FILTER }]
+  }]
+  Scope;
+
+  @UI.lineItem: [{ position: 40 }]
+  @UI.identification: [{ position: 40 }]
+  @Consumption.valueHelpDefinition: [{
+    entity: { name: 'ZI_BilValFieldVH', element: 'FieldName' },
+    additionalBinding: [{ localElement: 'Scope', element: 'Scope', usage: #FILTER }]
+  }]
+  FieldName;
+
+  @UI.lineItem: [{ position: 50 }]
+  @UI.identification: [{ position: 50 }]
+  @Consumption.valueHelpDefinition: [{
+    entity: { name: 'ZI_BilValCodeVH', element: 'Code' },
+    additionalBinding: [{ element: 'CodeGroup', localConstant: 'OPERATOR', usage: #FILTER }]
+  }]
+  Operator;
+
+  @UI.lineItem: [{ position: 60 }]
+  @UI.identification: [{ position: 60 }]
+  ValueLow;
+
+  @UI.lineItem: [{ position: 70 }]
+  @UI.identification: [{ position: 80 }]
+  ValueHigh;
+
+  @UI.lineItem: [{ position: 80 }]
+  @UI.identification: [{ position: 90 }]
+  @Consumption.valueHelpDefinition: [{
+    entity: { name: 'ZI_BilValFieldVH', element: 'FieldName' },
+    additionalBinding: [{ localElement: 'Scope', element: 'Scope', usage: #FILTER }]
+  }]
+  CompareField;
+}

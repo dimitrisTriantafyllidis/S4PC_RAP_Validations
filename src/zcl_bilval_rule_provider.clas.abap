@@ -29,9 +29,20 @@ CLASS zcl_bilval_rule_provider IMPLEMENTATION.
       RETURN.
     ENDIF.
 
-    SELECT * FROM zbilval_rule INTO TABLE @rules_buffer.
-    SELECT * FROM zbilval_cond INTO TABLE @conditions_buffer.
-    SELECT * FROM zbilval_plugin INTO TABLE @plugins_buffer.
+    SELECT FROM zbilval_rule
+      FIELDS rule_id, config_id, description, checkpoint, outcome, severity,
+             billing_type, sales_organization, company_code, item_category,
+             sold_to_party, message_text, active_flag, sequence, approval_reason,
+             local_last_changed_by, local_last_changed_at, last_changed_at
+      INTO TABLE @rules_buffer.
+    SELECT FROM zbilval_cond
+      FIELDS rule_id, position, scope, field_name, operator,
+             value_low, value_high, compare_field
+      INTO TABLE @conditions_buffer.
+    SELECT FROM zbilval_plugin
+      FIELDS plugin_id, config_id, description, checkpoint, active_flag, sequence,
+             approval_reason, local_last_changed_by, local_last_changed_at, last_changed_at
+      INTO TABLE @plugins_buffer.
     loaded = abap_true.
   ENDMETHOD.
 
