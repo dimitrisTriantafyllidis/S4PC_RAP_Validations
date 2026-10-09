@@ -7,7 +7,8 @@ annotate view ZC_BilValCondition with
 
   @UI.lineItem: [{ position: 20 }]
   @UI.identification: [{ position: 20 }]
-  Position;
+  @EndUserText.label: 'Position'
+  PositionNo;
 
   @UI.lineItem: [{ position: 30 }]
   @UI.identification: [{ position: 30 }]

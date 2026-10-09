@@ -9,7 +9,7 @@ define view entity ZC_BilValRule
       ConfigId,
       @Search.defaultSearchElement: true
       Description,
-      Checkpoint,
+      CheckpointCode,
       Outcome,
       Severity,
       BillingType,

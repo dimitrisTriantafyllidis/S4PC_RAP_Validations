@@ -36,7 +36,7 @@ CLASS zcl_bilval_rule_provider IMPLEMENTATION.
              local_last_changed_by, local_last_changed_at, last_changed_at
       INTO TABLE @rules_buffer.
     SELECT FROM zbilval_cond
-      FIELDS rule_id, position, scope, field_name, operator,
+      FIELDS rule_id, position_no, scope, field_name, operator,
              value_low, value_high, compare_field
       INTO TABLE @conditions_buffer.
     SELECT FROM zbilval_plugin
@@ -57,7 +57,7 @@ CLASS zcl_bilval_rule_provider IMPLEMENTATION.
 
       DATA(runtime_rule) = CORRESPONDING zif_bilval_check=>ty_rule( rule MAPPING checkpoint = checkpoint_id ).
       LOOP AT conditions_buffer INTO DATA(condition) WHERE rule_id = rule-rule_id.
-        APPEND CORRESPONDING #( condition ) TO runtime_rule-conditions.
+        APPEND CORRESPONDING #( condition MAPPING position = position_no ) TO runtime_rule-conditions.
       ENDLOOP.
       SORT runtime_rule-conditions BY position.
       APPEND runtime_rule TO result.

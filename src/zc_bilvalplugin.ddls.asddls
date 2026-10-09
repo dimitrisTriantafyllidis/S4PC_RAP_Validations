@@ -9,7 +9,7 @@ define view entity ZC_BilValPlugin
       ConfigId,
       @Search.defaultSearchElement: true
       Description,
-      Checkpoint,
+      CheckpointCode,
       ActiveFlag,
       Sequence,
       ApprovalReason,

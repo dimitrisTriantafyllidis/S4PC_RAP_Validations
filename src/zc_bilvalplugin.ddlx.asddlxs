@@ -21,7 +21,8 @@ annotate view ZC_BilValPlugin with
     entity: { name: 'ZI_BilValCodeVH', element: 'Code' },
     additionalBinding: [{ element: 'CodeGroup', localConstant: 'CHECKPOINT', usage: #FILTER }]
   }]
-  Checkpoint;
+  @EndUserText.label: 'Checkpoint'
+  CheckpointCode;
 
   @UI.lineItem: [{ position: 40 }]
   @UI.identification: [{ position: 40 }]

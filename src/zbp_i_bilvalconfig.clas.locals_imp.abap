@@ -33,16 +33,16 @@ CLASS lhc_bilval IMPLEMENTATION.
   METHOD normalizeRule.
     READ ENTITIES OF zi_bilvalconfig IN LOCAL MODE
       ENTITY Rule
-      FIELDS ( Checkpoint Outcome Severity BillingType SalesOrganization CompanyCode ItemCategory SoldToParty ApprovalReason )
+      FIELDS ( CheckpointCode Outcome Severity BillingType SalesOrganization CompanyCode ItemCategory SoldToParty ApprovalReason )
       WITH CORRESPONDING #( keys )
       RESULT DATA(rules).
 
     MODIFY ENTITIES OF zi_bilvalconfig IN LOCAL MODE
       ENTITY Rule
-      UPDATE FIELDS ( Checkpoint Outcome Severity BillingType SalesOrganization CompanyCode ItemCategory SoldToParty ApprovalReason )
+      UPDATE FIELDS ( CheckpointCode Outcome Severity BillingType SalesOrganization CompanyCode ItemCategory SoldToParty ApprovalReason )
       WITH VALUE #( FOR rule IN rules (
         %tky = rule-%tky
-        Checkpoint = to_upper( rule-Checkpoint )
+        CheckpointCode = to_upper( rule-CheckpointCode )
         Outcome = to_upper( rule-Outcome )
         Severity = to_upper( rule-Severity )
         BillingType = to_upper( rule-BillingType )
@@ -60,11 +60,11 @@ CLASS lhc_bilval IMPLEMENTATION.
       RESULT DATA(rules).
 
     LOOP AT rules INTO DATA(rule).
-      IF rule-Checkpoint IS NOT INITIAL AND zcl_bilval_fields=>is_checkpoint( CONV #( rule-Checkpoint ) ) = abap_false.
+      IF rule-CheckpointCode IS NOT INITIAL AND zcl_bilval_fields=>is_checkpoint( CONV #( rule-CheckpointCode ) ) = abap_false.
         APPEND VALUE #( %tky = rule-%tky
-          %element-Checkpoint = if_abap_behv=>mk-on
+          %element-CheckpointCode = if_abap_behv=>mk-on
           %msg = new_message_with_text( severity = if_abap_behv_message=>severity-error
-                                        text = |Checkpoint { rule-Checkpoint } is not supported.| ) ) TO reported-rule.
+                                        text = |Checkpoint { rule-CheckpointCode } is not supported.| ) ) TO reported-rule.
         APPEND VALUE #( %tky = rule-%tky ) TO failed-rule.
       ENDIF.
 
@@ -92,7 +92,7 @@ CLASS lhc_bilval IMPLEMENTATION.
         APPEND VALUE #( %tky = rule-%tky ) TO failed-rule.
       ENDIF.
 
-      IF ( rule-Outcome = zif_bilval_check=>outcome-require_approval OR rule-Checkpoint = zif_bilval_check=>checkpoint-approval )
+      IF ( rule-Outcome = zif_bilval_check=>outcome-require_approval OR rule-CheckpointCode = zif_bilval_check=>checkpoint-approval )
         AND rule-ApprovalReason IS INITIAL.
         APPEND VALUE #( %tky = rule-%tky
           %element-ApprovalReason = if_abap_behv=>mk-on
@@ -180,16 +180,16 @@ CLASS lhc_bilval IMPLEMENTATION.
   METHOD normalizePlugin.
     READ ENTITIES OF zi_bilvalconfig IN LOCAL MODE
       ENTITY Plugin
-      FIELDS ( PluginId Checkpoint ApprovalReason )
+      FIELDS ( PluginId CheckpointCode ApprovalReason )
       WITH CORRESPONDING #( keys )
       RESULT DATA(plugins).
 
     MODIFY ENTITIES OF zi_bilvalconfig IN LOCAL MODE
       ENTITY Plugin
-      UPDATE FIELDS ( Checkpoint ApprovalReason )
+      UPDATE FIELDS ( CheckpointCode ApprovalReason )
       WITH VALUE #( FOR plugin IN plugins (
         %tky = plugin-%tky
-        Checkpoint = to_upper( plugin-Checkpoint )
+        CheckpointCode = to_upper( plugin-CheckpointCode )
         ApprovalReason = to_upper( plugin-ApprovalReason ) ) ).
   ENDMETHOD.
 
@@ -209,11 +209,11 @@ CLASS lhc_bilval IMPLEMENTATION.
         APPEND VALUE #( %tky = plugin-%tky ) TO failed-plugin.
       ENDIF.
 
-      IF plugin-Checkpoint IS NOT INITIAL AND zcl_bilval_fields=>is_checkpoint( CONV #( plugin-Checkpoint ) ) = abap_false.
+      IF plugin-CheckpointCode IS NOT INITIAL AND zcl_bilval_fields=>is_checkpoint( CONV #( plugin-CheckpointCode ) ) = abap_false.
         APPEND VALUE #( %tky = plugin-%tky
-          %element-Checkpoint = if_abap_behv=>mk-on
+          %element-CheckpointCode = if_abap_behv=>mk-on
           %msg = new_message_with_text( severity = if_abap_behv_message=>severity-error
-                                        text = |Checkpoint { plugin-Checkpoint } is not supported.| ) )
+                                        text = |Checkpoint { plugin-CheckpointCode } is not supported.| ) )
           TO reported-plugin.
         APPEND VALUE #( %tky = plugin-%tky ) TO failed-plugin.
       ENDIF.

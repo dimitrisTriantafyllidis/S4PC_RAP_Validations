@@ -47,7 +47,7 @@ etag dependent by _Config
     RuleId = rule_id;
     ConfigId = config_id;
     Description = description;
-    Checkpoint = checkpoint_id;
+    CheckpointCode = checkpoint_id;
     Outcome = outcome;
     Severity = severity;
     BillingType = billing_type;
@@ -71,8 +71,8 @@ lock dependent by _Rule
 authorization dependent by _Rule
 etag dependent by _Rule
 {
-  field ( readonly : update ) RuleId, Position;
-  field ( mandatory : create ) Position, Scope, FieldName, Operator;
+  field ( readonly : update ) RuleId, PositionNo;
+  field ( mandatory : create ) PositionNo, Scope, FieldName, Operator;
 
   update;
   delete;
@@ -85,7 +85,7 @@ etag dependent by _Rule
   mapping for zbilval_cond
   {
     RuleId = rule_id;
-    Position = position;
+    PositionNo = position_no;
     Scope = scope;
     FieldName = field_name;
     Operator = operator;
@@ -118,7 +118,7 @@ etag dependent by _Config
     PluginId = plugin_id;
     ConfigId = config_id;
     Description = description;
-    Checkpoint = checkpoint_id;
+    CheckpointCode = checkpoint_id;
     ActiveFlag = active_flag;
     Sequence = sequence;
     ApprovalReason = approval_reason;

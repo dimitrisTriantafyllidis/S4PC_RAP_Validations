@@ -5,7 +5,7 @@ define view entity ZC_BilValCondition
   as projection on ZI_BilValCondition
 {
   key RuleId,
-  key Position,
+  key PositionNo,
       Scope,
       FieldName,
       Operator,

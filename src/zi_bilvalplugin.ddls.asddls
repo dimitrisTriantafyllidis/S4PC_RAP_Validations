@@ -8,7 +8,7 @@ define view entity ZI_BilValPlugin
   key plugin_id             as PluginId,
       config_id             as ConfigId,
       description           as Description,
-      checkpoint_id         as Checkpoint,
+      checkpoint_id         as CheckpointCode,
       active_flag           as ActiveFlag,
       sequence              as Sequence,
       approval_reason       as ApprovalReason,

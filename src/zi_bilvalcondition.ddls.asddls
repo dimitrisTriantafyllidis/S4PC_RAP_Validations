@@ -6,7 +6,7 @@ define view entity ZI_BilValCondition
   association to parent ZI_BilValRule as _Rule on $projection.RuleId = _Rule.RuleId
 {
   key rule_id       as RuleId,
-  key position      as Position,
+  key position_no   as PositionNo,
       scope         as Scope,
       field_name    as FieldName,
       operator      as Operator,
