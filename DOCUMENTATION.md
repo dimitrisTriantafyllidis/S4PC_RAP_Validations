@@ -176,7 +176,7 @@ Keep the SAP development system and package `ZBD_BILVAL`. Test and production re
 | [SCENARIO.md](SCENARIO.md) | Quality-tenant invoice: priced item `TG11` is billed, free-of-charge item `TG12` is rejected, then a warning, then a preliminary-billing completeness check |
 | [SCENARIO-MASTERDATA.md](SCENARIO-MASTERDATA.md) | New customer in sales area 1010 / 10 / 00 must use account assignment group `01`. Material `TG-BILVAL` in plant 1010 must have a profit center. Both are tested on add and on change. |
 
-`ZTC_BILVAL_ENGINE` is the ABAP Unit suite. Run it from ADT after the billing BAdI classes activate. It does not call a BAdI and it does not post a document.
+Local test class `LTC_BILVAL_ENGINE` in the test classes of `ZCL_BILVAL_ENGINE` is the ABAP Unit suite. Run it from ADT (open `ZCL_BILVAL_ENGINE`, Ctrl+Shift+F10) after the billing BAdI classes activate. It does not call a BAdI and it does not post a document.
 
 Messages that do run are in application log object `ZBILVAL`, subobject `RUN`. If that log object is missing, billing still continues. The log write is caught.
 

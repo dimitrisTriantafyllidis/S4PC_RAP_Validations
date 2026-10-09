@@ -36,11 +36,11 @@ An empty checkpoint on a rule or plug-in means the check runs at every billing c
    - CDS views, metadata extensions, behavior definitions, and behavior pool `ZBP_I_BILVALCONFIG`.
    - Engine, field catalog, factory, log, plug-ins, query providers, master-data classes (`ZCL_BILVAL_MD_LOOKUP`, `ZCL_BILVAL_MD_MAPPER`, `ZCL_BILVAL_MD_CUSTOMER`, `ZCL_BILVAL_MD_PRODUCT`), and `ZCL_BILVAL_SETUP`.
    - Service binding `ZUI_BILVAL_O4` after the views are active.
-   - The four billing BAdI classes, `ZCL_BILVAL_BADI_PRODUCT`, and `ZTC_BILVAL_ENGINE` last. They reference released interfaces and will not activate until the method names match the tenant. See [Align the BAdI methods](#align-the-badi-methods). The unit test calls the customer and material checkers, so those master-data classes must be active first. `ZCL_BILVAL_BADI_PRODUCT` is not used by the unit test.
+   - The four billing BAdI classes and `ZCL_BILVAL_BADI_PRODUCT` last. They reference released interfaces and will not activate until the method names match the tenant. See [Align the BAdI methods](#align-the-badi-methods). The unit test calls the customer and material checkers, so those master-data classes must be active first. `ZCL_BILVAL_BADI_PRODUCT` is not used by the unit test.
 4. Publish service binding `ZUI_BILVAL_O4` locally (OData V4, UI).
 5. In ADT, run class `ZCL_BILVAL_SETUP` as an ABAP application (F9). It creates configuration row `BILVAL` and inactive plug-in rows `ZERO_PRICE` and `PRECEDING`.
 
-`ZTC_BILVAL_ENGINE` is the ABAP Unit suite. Run it from ADT after the BAdI classes activate. It covers operators, filters, severity, unknown fields, plug-in order, the zero-amount plug-in, the preceding-document plug-in, item rejection, and preliminary-billing action mapping. It does not call a BAdI.
+Local test class `LTC_BILVAL_ENGINE` in the test classes of `ZCL_BILVAL_ENGINE` is the ABAP Unit suite. Run it from ADT (open `ZCL_BILVAL_ENGINE`, Ctrl+Shift+F10) after the BAdI classes activate. It covers operators, filters, severity, unknown fields, plug-in order, the zero-amount plug-in, the preceding-document plug-in, item rejection, and preliminary-billing action mapping. It does not call a BAdI.
 
 ## Fiori app and catalog
 
