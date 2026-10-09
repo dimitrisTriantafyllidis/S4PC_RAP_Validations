@@ -1,4 +1,4 @@
-@Metadata.layer: #CORE
+@Metadata.layer: #CUSTOMER
 annotate view ZC_BilValCondition with
 {
   @UI.lineItem: [{ position: 10 }]

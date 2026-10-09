@@ -1,4 +1,4 @@
-@Metadata.layer: #CORE
+@Metadata.layer: #CUSTOMER
 annotate view ZC_BilValPlugin with
 {
   @UI.lineItem: [{ position: 10 }]
