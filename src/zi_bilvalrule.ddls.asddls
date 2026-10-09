@@ -9,7 +9,7 @@ define view entity ZI_BilValRule
   key rule_id               as RuleId,
       config_id             as ConfigId,
       description           as Description,
-      checkpoint            as Checkpoint,
+      checkpoint_id         as Checkpoint,
       outcome               as Outcome,
       severity              as Severity,
       billing_type          as BillingType,

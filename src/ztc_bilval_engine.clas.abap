@@ -64,7 +64,7 @@ CLASS ztc_bilval_engine DEFINITION
     METHODS billing_context
       IMPORTING
         billing_type  TYPE c LENGTH 4 DEFAULT 'F2'
-        net_amount    TYPE p LENGTH 15 DECIMALS 2 DEFAULT 0
+        net_amount    TYPE zif_bilval_check=>ty_amount DEFAULT 0
         sold_to_party TYPE c LENGTH 10 OPTIONAL
       RETURNING
         VALUE(result) TYPE zif_bilval_check=>ty_context.

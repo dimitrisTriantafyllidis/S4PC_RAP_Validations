@@ -51,13 +51,13 @@ CLASS zcl_bilval_context_mapper DEFINITION
       IMPORTING
         value         TYPE string
       RETURNING
-        VALUE(result) TYPE p LENGTH 15 DECIMALS 2.
+        VALUE(result) TYPE zif_bilval_check=>ty_amount.
 
     METHODS as_quantity
       IMPORTING
         value         TYPE string
       RETURNING
-        VALUE(result) TYPE p LENGTH 13 DECIMALS 3.
+        VALUE(result) TYPE zif_bilval_check=>ty_quantity.
 
     METHODS is_structure
       IMPORTING

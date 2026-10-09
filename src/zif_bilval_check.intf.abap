@@ -3,6 +3,8 @@ INTERFACE zif_bilval_check
 
   TYPES:
     ty_checkpoint      TYPE c LENGTH 10,
+    ty_amount          TYPE p LENGTH 15 DECIMALS 2,
+    ty_quantity        TYPE p LENGTH 13 DECIMALS 3,
     ty_outcome         TYPE c LENGTH 20,
     ty_severity        TYPE c LENGTH 1,
     ty_scope           TYPE c LENGTH 1,

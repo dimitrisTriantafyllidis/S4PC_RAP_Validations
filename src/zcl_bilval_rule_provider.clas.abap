@@ -30,7 +30,7 @@ CLASS zcl_bilval_rule_provider IMPLEMENTATION.
     ENDIF.
 
     SELECT FROM zbilval_rule
-      FIELDS rule_id, config_id, description, checkpoint, outcome, severity,
+      FIELDS rule_id, config_id, description, checkpoint_id, outcome, severity,
              billing_type, sales_organization, company_code, item_category,
              sold_to_party, message_text, active_flag, sequence, approval_reason,
              local_last_changed_by, local_last_changed_at, last_changed_at
@@ -40,7 +40,7 @@ CLASS zcl_bilval_rule_provider IMPLEMENTATION.
              value_low, value_high, compare_field
       INTO TABLE @conditions_buffer.
     SELECT FROM zbilval_plugin
-      FIELDS plugin_id, config_id, description, checkpoint, active_flag, sequence,
+      FIELDS plugin_id, config_id, description, checkpoint_id, active_flag, sequence,
              approval_reason, local_last_changed_by, local_last_changed_at, last_changed_at
       INTO TABLE @plugins_buffer.
     loaded = abap_true.
@@ -51,11 +51,11 @@ CLASS zcl_bilval_rule_provider IMPLEMENTATION.
 
     LOOP AT rules_buffer INTO DATA(rule)
       WHERE active_flag = abap_true.
-      IF rule-checkpoint IS NOT INITIAL AND rule-checkpoint <> checkpoint.
+      IF rule-checkpoint_id IS NOT INITIAL AND rule-checkpoint_id <> checkpoint.
         CONTINUE.
       ENDIF.
 
-      DATA(runtime_rule) = CORRESPONDING zif_bilval_check=>ty_rule( rule ).
+      DATA(runtime_rule) = CORRESPONDING zif_bilval_check=>ty_rule( rule MAPPING checkpoint = checkpoint_id ).
       LOOP AT conditions_buffer INTO DATA(condition) WHERE rule_id = rule-rule_id.
         APPEND CORRESPONDING #( condition ) TO runtime_rule-conditions.
       ENDLOOP.
@@ -68,10 +68,10 @@ CLASS zcl_bilval_rule_provider IMPLEMENTATION.
     load( ).
 
     LOOP AT plugins_buffer INTO DATA(plugin) WHERE active_flag = abap_true.
-      IF plugin-checkpoint IS NOT INITIAL AND plugin-checkpoint <> checkpoint.
+      IF plugin-checkpoint_id IS NOT INITIAL AND plugin-checkpoint_id <> checkpoint.
         CONTINUE.
       ENDIF.
-      APPEND CORRESPONDING #( plugin ) TO result.
+      APPEND CORRESPONDING #( plugin MAPPING checkpoint = checkpoint_id ) TO result.
     ENDLOOP.
   ENDMETHOD.
 

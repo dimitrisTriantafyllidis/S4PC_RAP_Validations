@@ -47,7 +47,7 @@ etag dependent by _Config
     RuleId = rule_id;
     ConfigId = config_id;
     Description = description;
-    Checkpoint = checkpoint;
+    Checkpoint = checkpoint_id;
     Outcome = outcome;
     Severity = severity;
     BillingType = billing_type;
@@ -118,7 +118,7 @@ etag dependent by _Config
     PluginId = plugin_id;
     ConfigId = config_id;
     Description = description;
-    Checkpoint = checkpoint;
+    Checkpoint = checkpoint_id;
     ActiveFlag = active_flag;
     Sequence = sequence;
     ApprovalReason = approval_reason;
